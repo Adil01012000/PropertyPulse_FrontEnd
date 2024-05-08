@@ -8,9 +8,9 @@ const Hero = ({filterFunctions}) => {
     <>
       <div className="inner-banner-style1 text-center">
         <h2 className="hero-title animate-up-1 ">Find Your Dream Home</h2>
-        <p className="hero-text fz15 animate-up-2">
+        {/* <p className="hero-text fz15 animate-up-2">
           We’ve more than 745,000 apartments, place & plot.
-        </p>
+        </p> */}
 
         <HeroContent  filterFunctions={filterFunctions}  />
       </div>

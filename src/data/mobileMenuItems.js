@@ -14,50 +14,50 @@ module.exports = [
       { path: "/home-v10", label: "Home v10" },
     ],
   },
-  {
-    label: "Listings",
-    subMenu: [
-      {
-        label: "Grid View",
-        subMenu: [
-          { label: "Grid Default", path: "/grid-default" },
-          { label: "Grid Full Width 3 Cols", path: "/grid-full-3-col" },
-          { label: "Grid Full Width 4 Cols", path: "/grid-full-4-col" },
-          { label: "Grid Full Width 2 Cols", path: "/grid-full-2-col" },
-          {
-            label: "Grid Full Width 1 Cols v1",
-            path: "/grid-full-1-col-v1",
-          },
-          {
-            label: "Grid Full Width 1 Cols v2",
-            path: "/grid-full-1-col-v2",
-          },
-          { label: "Banner Search v1", path: "/banner-search-v1" },
-          { title: "Banner Search v2", path: "/banner-search-v2" },
-        ],
-      },
-      {
-        label: "Map Style",
-        subMenu: [
-          {
-            label: "Header Map Style",
-            path: "/header-map-style",
-          },
-          { label: "Map V1", path: "/map-v1" },
-          { label: "Map V2", path: "/map-v2" },
-          { label: "Map V3", path: "/map-v3" },
-          { label: "Map V4", path: "/map-v4" },
-        ],
-      },
-      {
-        label: "Listing View",
-        subMenu: [
-          { label: "List v1", path: "/list-v1" },
-          { label: "List All Style", path: "/list-all-style" },
-        ],
-      },
-    ],
-  },
+  // {
+  //   label: "Listings",
+  //   subMenu: [
+  //     {
+  //       label: "Grid View",
+  //       subMenu: [
+  //         { label: "Grid Default", path: "/grid-default" },
+  //         { label: "Grid Full Width 3 Cols", path: "/grid-full-3-col" },
+  //         { label: "Grid Full Width 4 Cols", path: "/grid-full-4-col" },
+  //         { label: "Grid Full Width 2 Cols", path: "/grid-full-2-col" },
+  //         {
+  //           label: "Grid Full Width 1 Cols v1",
+  //           path: "/grid-full-1-col-v1",
+  //         },
+  //         {
+  //           label: "Grid Full Width 1 Cols v2",
+  //           path: "/grid-full-1-col-v2",
+  //         },
+  //         { label: "Banner Search v1", path: "/banner-search-v1" },
+  //         { title: "Banner Search v2", path: "/banner-search-v2" },
+  //       ],
+  //     },
+  //     {
+  //       label: "Map Style",
+  //       subMenu: [
+  //         {
+  //           label: "Header Map Style",
+  //           path: "/header-map-style",
+  //         },
+  //         { label: "Map V1", path: "/map-v1" },
+  //         { label: "Map V2", path: "/map-v2" },
+  //         { label: "Map V3", path: "/map-v3" },
+  //         { label: "Map V4", path: "/map-v4" },
+  //       ],
+  //     },
+  //     {
+  //       label: "Listing View",
+  //       subMenu: [
+  //         { label: "List v1", path: "/list-v1" },
+  //         { label: "List All Style", path: "/list-all-style" },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     label: "Property",
     subMenu: [

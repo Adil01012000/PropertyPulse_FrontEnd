@@ -39,14 +39,14 @@ const MainMenu = () => {
         }
       })
     );
-    listingItems.forEach((item) =>
-      item.submenu.forEach((elm) => {
-        if (elm.href.split("/")[1] == pathname.split("/")[1]) {
-          setTopMenu("listing");
-          setSubmenu(item.title);
-        }
-      })
-    );
+    // listingItems.forEach((item) =>
+    //   item.submenu.forEach((elm) => {
+    //     if (elm.href.split("/")[1] == pathname.split("/")[1]) {
+    //       setTopMenu("listing");
+    //       setSubmenu(item.title);
+    //     }
+    //   })
+    // );
   }, [pathname]);
 
   const handleActive = (link) => {
@@ -76,7 +76,7 @@ const MainMenu = () => {
       </li>
       {/* End homeItems */}
 
-      <li className="megamenu_style dropitem">
+      {/* <li className="megamenu_style dropitem">
         <a className="list-item" href="#">
           <span className={topMenu == "listing" ? "title menuActive" : "title"}>
             Listing
@@ -102,7 +102,7 @@ const MainMenu = () => {
             </li>
           ))}
         </ul>
-      </li>
+      </li> */}
       {/* End listings */}
 
       <li className="visible_list dropitem">

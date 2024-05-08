@@ -72,7 +72,6 @@ const AddPropertyTabContent = () => {
           </button>
         </div>
       </nav>
-      {/* End nav tabs */}
 
       <div className="tab-content" id="nav-tabContent">
         <div
@@ -86,7 +85,6 @@ const AddPropertyTabContent = () => {
             <PropertyDescription />
           </div>
         </div>
-        {/* End tab for Property Description */}
 
         <div
           className="tab-pane fade"
@@ -96,7 +94,6 @@ const AddPropertyTabContent = () => {
         >
           <UploadMedia />
         </div>
-        {/* End tab for Upload photos of your property */}
 
         <div
           className="tab-pane fade"
@@ -109,7 +106,6 @@ const AddPropertyTabContent = () => {
             <LocationField />
           </div>
         </div>
-        {/* End tab for Listing Location */}
 
         <div
           className="tab-pane fade"
@@ -122,7 +118,6 @@ const AddPropertyTabContent = () => {
             <DetailsFiled />
           </div>
         </div>
-        {/* End tab for Listing Details */}
 
         <div
           className="tab-pane fade"
@@ -137,7 +132,6 @@ const AddPropertyTabContent = () => {
             </div>
           </div>
         </div>
-        {/* End tab for Select Amenities */}
       </div>
     </>
   );

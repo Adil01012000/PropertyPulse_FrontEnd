@@ -17,7 +17,7 @@ import Link from "next/link";
 import PopulerProperty from "@/components/home/home-v1/PopulerProperty";
 
 export const metadata = {
-  title: "Home v1 || Homez - Real Estate NextJS Template",
+  title: "Home v1 || Property Pulse",
 };
 
 const Home_V1 = () => {
@@ -141,82 +141,6 @@ const Home_V1 = () => {
         </div>
       </section>
       {/* End Explore Apartment */}
-
-      {/* Featured Listings */}
-      <section className="bgc-f7">
-        <div className="container">
-          <div className="row align-items-center" data-aos="fade-up">
-            <div className="col-lg-9">
-              <div className="main-title2">
-                <h2 className="title">Discover Our Featured Listings</h2>
-                <p className="paragraph">
-                  Aliquam lacinia diam quis lacus euismod
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="text-start text-lg-end mb-3">
-                <Link className="ud-btn2" href="/grid-full-3-col">
-                  See All Properties
-                  <i className="fal fa-arrow-right-long" />
-                </Link>
-              </div>
-            </div>
-          </div>
-          {/* End header */}
-
-          <div className="row">
-            <div className="col-lg-12" data-aos="fade-up" data-aos-delay="200">
-              <div className="feature-listing-slider">
-                <FeaturedListings />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Featured Listings */}
-
-      {/* Explore property-city */}
-      <section className="pb40-md pb90">
-        <div className="container">
-          <div
-            className="row align-items-center"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div className="col-lg-9">
-              <div className="main-title2">
-                <h2 className="title">Properties by Cities</h2>
-                <p className="paragraph">
-                  Aliquam lacinia diam quis lacus euismod
-                </p>
-              </div>
-            </div>
-            {/* End col-lg-9 */}
-
-            <div className="col-lg-3">
-              <div className="text-start text-lg-end mb-3">
-                <a className="ud-btn2" href="#">
-                  See All Cities
-                  <i className="fal fa-arrow-right-long" />
-                </a>
-              </div>
-            </div>
-            {/* End col-lg-3 */}
-          </div>
-          {/* End .row */}
-
-          <div className="row">
-            <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-              <div className="property-city-slider position-relative">
-                <PropertiesByCities />
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-        </div>
-      </section>
-      {/* End Explore property-city */}
 
       {/* <!-- About Us --> */}
       <section className="pt0 pb40-md">

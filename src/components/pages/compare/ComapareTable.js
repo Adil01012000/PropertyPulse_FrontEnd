@@ -1,22 +1,80 @@
+"use client";
 import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
+
+import Select from "react-select";
 
 const ComapareTable = () => {
+
+  const [comparePropertiesOne, setComparePropertiesOne] = useState([]);
+  const [comparePropertiesTwo, setComparePropertiesTwo] = useState([]);
+
+  // Get API calls
+  const getPropertiesToCompare = async () => {
+    try {
+      let data = { property_one_id: '663a38c12aa15f4e43368d56', property_two_id: '663a38c12aa15f4e43368d56' }
+
+      const response = await fetch(
+        "http://localhost:5000/api/property/getPropertyToCompare",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      const jsonData = await response.json();
+      setComparePropertiesOne(jsonData.propertyOne);
+      setComparePropertiesTwo(jsonData.propertyTwo);
+      console.log(jsonData.propertyOne);
+      console.log(jsonData.propertyTwo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPropertiesToCompare();
+  }, []);
+
+
   return (
     <table className="table table-borderless mb-0">
       <thead className="t-head">
         <tr>
           <th scope="col" />
-          <th scope="col">Home in Metric Way</th>
-          <th scope="col">Villa on Hollywood Boulevard</th>
-          <th scope="col">Explore Old Barcelona</th>
+          <th scope="col">
+          <div className="col-sm-6 col-xl-4">
+          <div className="mb20">
+            <label className="heading-color ff-heading fw600 mb10">
+              Select Category
+            </label>
+            <div className="location-area">
+              <Select
+                name="colors"
+                // options={catergoryOptions}
+                styles={customStyles}
+                className="select-custom pl-0"
+                classNamePrefix="select"
+                required
+                // value={property_category}
+                // onChange={(selectedOption) => setPropertyCategory(selectedOption)}
+              />
+            </div>
+          </div>
+        </div>
+          </th>
+
+          <th scope="col">
+
+          </th>
         </tr>
       </thead>
-      {/* End thead */}
 
       <thead className="t-head2">
         <tr>
           <th scope="col" />
-          {/* End th */}
 
           <th scope="col">
             <div className="membership_header">
@@ -28,12 +86,13 @@ const ComapareTable = () => {
                   src="/images/listings/compare-1.jpg"
                   alt="compare-1"
                 />
-                <div className="h6 price mt-1">$14,000 / mo</div>
-                <p className="address mb-0">California City, CA, USA</p>
+                
+                <div className="h6 price mt-1">{comparePropertiesOne.property_title}</div>
+                <div className="h6 price mt-1">{comparePropertiesOne.property_price}</div>
+                <p className="address mb-0">{comparePropertiesOne.property_city} , {comparePropertiesOne.property_state} , {comparePropertiesOne.property_country}</p>
               </div>
             </div>
           </th>
-          {/* End th */}
 
           <th scope="col">
             <div className="membership_header">
@@ -45,255 +104,114 @@ const ComapareTable = () => {
                   src="/images/listings/compare-1.jpg"
                   alt="compare-1"
                 />
-                <div className="h6 price mt-1">$14,000 / mo</div>
-                <p className="address mb-0">California City, CA, USA</p>
+                <div className="h6 price mt-1">{comparePropertiesTwo.property_title}</div>
+                <div className="h6 price mt-1">{comparePropertiesTwo.property_price}</div>
+                <p className="address mb-0">{comparePropertiesTwo.property_city} , {comparePropertiesTwo.property_state} , {comparePropertiesTwo.property_country}</p>
               </div>
             </div>
           </th>
-          {/* End th */}
 
-          <th scope="col">
-            <div className="membership_header">
-              <div className="thumb">
-                <Image
-                  width={331}
-                  height={245}
-                  className="img-fluid mb-3 w100"
-                  src="/images/listings/compare-1.jpg"
-                  alt="compare-1"
-                />
-                <div className="h6 price mt-1">$14,000 / mo</div>
-                <p className="address mb-0">California City, CA, USA</p>
-              </div>
-            </div>
-          </th>
-          {/* End th */}
         </tr>
       </thead>
-      {/* End thead2 */}
 
       <tbody className="t-body">
         <tr>
           <th className="text-end" scope="row">
             Property Type
           </th>
-          <td>Apartment</td>
-          <td>Studio</td>
-          <td>Villa</td>
+          <td>{comparePropertiesOne.property_purpose}</td>
+          <td>{comparePropertiesTwo.property_purpose}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             Address
           </th>
-          <td>Quincy St</td>
-          <td>8100 S Ashland Ave</td>
-          <td>194 Mercer Street</td>
+          <td>{comparePropertiesOne.property_address}</td>
+          <td>{comparePropertiesTwo.property_address}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             City
           </th>
-          <td>New York</td>
-          <td>Chicago</td>
-          <td>New York</td>
+          <td>{comparePropertiesOne.property_city}</td>
+          <td>{comparePropertiesTwo.property_city}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
-            State/county
+            State
           </th>
-          <td>New York</td>
-          <td>New York</td>
-          <td>New York</td>
+          <td>{comparePropertiesOne.property_state}</td>
+          <td>{comparePropertiesTwo.property_state}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
-            Zip/Postal Code
+            Zip Code
           </th>
-          <td>10013</td>
-          <td>10013</td>
-          <td>10013</td>
+          <td>{comparePropertiesOne.property_zip_code}</td>
+          <td>{comparePropertiesTwo.property_zip_code}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             Country
           </th>
-          <td>United States</td>
-          <td>United States</td>
-          <td>United States</td>
+          <td>{comparePropertiesOne.property_country}</td>
+          <td>{comparePropertiesTwo.property_country}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             Property Size
           </th>
-          <td>2560 Sq Ft</td>
-          <td>2560 Sq Ft</td>
-          <td>2560 Sq Ft</td>
+          <td>{comparePropertiesOne.property_size}</td>
+          <td>{comparePropertiesTwo.property_size}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
-            Property ID
+            Structure Type
           </th>
-          <td>R43</td>
-          <td>R43</td>
-          <td>R43</td>
+          <td>{comparePropertiesOne.property_structure_type}</td>
+          <td>{comparePropertiesTwo.property_structure_type}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             Bedrooms
           </th>
-          <td>3</td>
-          <td>2</td>
-          <td>5</td>
+          <td>{comparePropertiesOne.property_bedrooms}</td>
+          <td>{comparePropertiesTwo.property_bedrooms}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             Bathrooms{" "}
           </th>
-          <td>1</td>
-          <td>4</td>
-          <td>3</td>
+          <td>{comparePropertiesOne.property_baths}</td>
+          <td>{comparePropertiesTwo.property_baths}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
             Garage
           </th>
-          <td>1</td>
-          <td>4</td>
-          <td>3</td>
+          <td>{comparePropertiesOne.property_garage}</td>
+          <td>{comparePropertiesTwo.property_garage}</td>
         </tr>
-        {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
-            Air Conditioning
+            Basement
           </th>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
+          <td>{comparePropertiesOne.property_basement}</td>
+          <td>{comparePropertiesTwo.property_basement}</td>
         </tr>
-        {/* End tr */}
 
-        <tr>
-          <th className="text-end" scope="row">
-            Barbeque
-          </th>
-          <td>
-            <a className="check_circle_close" href="#">
-              <span className="fas fa-xmark" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle_close" href="#">
-              <span className="fas fa-xmark" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle_close" href="#">
-              <span className="fas fa-xmark" />
-            </a>
-          </td>
-        </tr>
-        {/* End tr */}
-
-        <tr>
-          <th className="text-end" scope="row">
-            Gym
-          </th>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-        </tr>
-        {/* End tr */}
-
-        <tr>
-          <th className="text-end" scope="row">
-            Swimming Pool
-          </th>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-        </tr>
-        {/* End tr */}
-
-        <tr>
-          <th className="text-end" scope="row">
-            TV Cable
-          </th>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-          <td>
-            <a className="check_circle" href="#">
-              <span className="fas fa-check" />
-            </a>
-          </td>
-        </tr>
-        {/* End tr */}
       </tbody>
-      {/* End tbody */}
     </table>
   );
 };

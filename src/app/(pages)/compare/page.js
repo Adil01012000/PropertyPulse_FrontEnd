@@ -5,21 +5,16 @@ import MobileMenu from "@/components/common/mobile-menu";
 import ComapareTable from "@/components/pages/compare/ComapareTable";
 
 export const metadata = {
-  title: "Compare  || Homez - Real Estate NextJS Template",
+  title: "Compare  || Property Pulse",
 };
 
 const Compare = () => {
   return (
     <>
-      {/* Main Header Nav */}
       <DefaultHeader />
-      {/* End Main Header Nav */}
 
-      {/* Mobile Nav  */}
       <MobileMenu />
-      {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Sections */}
       <section className="breadcumb-section3 p-0">
         <div className="container">
           <div className="row">
@@ -39,9 +34,7 @@ const Compare = () => {
           </div>
         </div>
       </section>
-      {/* End Breadcrumb Sections */}
 
-      {/* Our Compare Area */}
       <section className="our-compare">
         <div className="container">
           <div className="row wow fadeInUp" data-wow-delay="300ms">
@@ -53,17 +46,12 @@ const Compare = () => {
           </div>
         </div>
       </section>
-      {/* Our Compare Area */}
-
-      {/* Our CTA */}
+      
       <CallToActions />
-      {/* Our CTA */}
 
-      {/* Start Our Footer */}
       <section className="footer-style1 pt60 pb-0">
         <Footer />
       </section>
-      {/* End Our Footer */}
     </>
   );
 };
