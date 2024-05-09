@@ -7,23 +7,23 @@ const Explore = () => {
     {
       id: 1,
       icon: "/images/icon/property-buy.svg",
-      title: "Buy a property",
-      text: "Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.",
-      linkText: "Find a home",
+      title: "Buy a Property",
+      text: "Unlock your dream home with a single click – explore and purchase your ideal property today!",
+      linkText: "Buy",
     },
     {
       id: 2,
       icon: "/images/icon/property-sell.svg",
-      title: "Sell a property",
-      text: "Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.",
-      linkText: "Place an ad",
+      title: "Rent a Property",
+      text: "Discover your perfect rental oasis – find comfort and convenience in your new home today!",
+      linkText: "Rent",
     },
     {
       id: 3,
       icon: "/images/icon/property-rent.svg",
-      title: "Rent a property",
-      text: "Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.",
-      linkText: "Find a rental",
+      title: "Buy a Land",
+      text: "Invest in your future – secure your own piece of land and build your dreams from the ground up!",
+      linkText: "Buy",
     },
   ];
 
@@ -34,7 +34,7 @@ const Explore = () => {
           className="col-sm-6 col-lg-4"
           key={item.id}
           data-aos="fade-up"
-          data-aos-delay={(item.id + 1) * 100} // Increase delay for each item
+          data-aos-delay={(item.id + 1) * 100} 
         >
           <div className="iconbox-style2 text-center">
             <div className="icon">

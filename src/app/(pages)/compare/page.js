@@ -47,7 +47,7 @@ const Compare = () => {
         </div>
       </section>
       
-      <CallToActions />
+      {/* <CallToActions /> */}
 
       <section className="footer-style1 pt60 pb-0">
         <Footer />

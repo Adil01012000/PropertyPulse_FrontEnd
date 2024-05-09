@@ -16,7 +16,7 @@ const About = () => {
             data-aos="fade-left"
           >
             <h2 className="title mb30">
-              Let’s find the right selling option for you
+              Let's find the right selling option for you
             </h2>
             <p className="text mb25 fz15">
               As the complexity of buildings to increase, the field of
@@ -32,12 +32,11 @@ const About = () => {
                 ))}
               </ul>
             </div>
-            <Link href="/grid-gull-3-col" className="ud-btn btn-white2">
+            <Link href="/contact" className="ud-btn btn-white2">
               Learn More<i className="fal fa-arrow-right-long"></i>
             </Link>
           </div>
         </div>
-        {/* End .col-6 */}
 
         <div className="col-lg-9 col-xl-8 col-xxl-7 offset-xxl-1">
           <div className="position-relative mb35 mb0-sm" data-aos="fade-right">
@@ -46,7 +45,7 @@ const About = () => {
                 width={270}
                 height={350}
                 className="img-1"
-                src="/images/about/about-1.jpg"
+                src="/images/background/aboutus-1.jpg"
                 alt="about"
               />
             </div>
@@ -55,16 +54,7 @@ const About = () => {
                 width={370}
                 height={520}
                 className="img-1"
-                src="/images/about/about-2.jpg"
-                alt="about"
-              />
-            </div>
-            <div className="img-box-3">
-              <Image
-                width={276}
-                height={146}
-                className="img-1 bounce-y"
-                src="/images/about/about-1.png"
+                src="/images/background/aboutus-2.jpg"
                 alt="about"
               />
             </div>
