@@ -1,23 +1,39 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 
-const PropertyFeaturesAminites = () => {
-  const featuresAmenitiesData = [
-    ["Air Conditioning", "Barbeque", "Dryer", "Gym"],
-    ["Lawn", "Microwave", "Outdoor Shower", "Refrigerator"],
-    ["Swimming Pool", "TV Cable", "Washer", "WiFi6"],
-  ];
+const PropertyFeaturesAminites = ({_id}) => {
+  const [propertyDetails, setPropertyDetails] = useState([]);
+
+  const getPropertyDetails = async () => {
+    try {
+      let pro = { _id };
+      const response = await fetch("http://localhost:5000/api/property/getPropertyById", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pro),
+      });
+      const data = await response.json();
+      setPropertyDetails(data.property);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPropertyDetails();
+  }, []);
 
   return (
     <>
-      {featuresAmenitiesData.map((row, rowIndex) => (
-        <div key={rowIndex} className="col-sm-6 col-md-4">
+      {propertyDetails.property_amenities && propertyDetails.property_amenities.map((item, index) => (
+        <div key={index} className="col-sm-6 col-md-4">
           <div className="pd-list">
-            {row.map((item, index) => (
-              <p key={index} className="text mb10">
-                <i className="fas fa-circle fz6 align-middle pe-2" />
-                {item}
-              </p>
-            ))}
+            <p className="text mb10">
+              <i className="fas fa-circle fz6 align-middle pe-2" />
+              {item}
+            </p>
           </div>
         </div>
       ))}

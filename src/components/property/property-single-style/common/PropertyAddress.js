@@ -1,22 +1,39 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 
-const PropertyAddress = () => {
+const PropertyAddress = ({_id}) => {
+
+  const [property_details, setPropertyDetails] = useState([]);
+
+  const getPropertyDetails = async () => {
+
+    try {
+      let pro = { _id }
+      const response = await fetch("http://localhost:5000/api/property/getPropertyById", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pro),
+      });
+      const data = await response.json();
+      setPropertyDetails(data.property);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPropertyDetails();
+  }, [])
+
   const addresses = [
     {
-      address: "10425 Tabor St",
-      city: "Los Angeles",
-      state: "California",
-      zipCode: "90034",
-      area: "Brookside",
-      country: "United States",
-    },
-    {
-      address: "10 Downing Street",
-      city: "London",
-      state: "Greater London",
-      zipCode: "SW1A 2AA",
-      area: "Westminster",
-      country: "United Kingdom",
+      address: property_details.property_address,
+      city: property_details.property_city,
+      state: property_details.property_state,
+      country: property_details.property_country,
+      zipCode: property_details.property_zip_code,
     },
   ];
 
@@ -31,28 +48,21 @@ const PropertyAddress = () => {
             <div className="pd-list">
               <p className="fw600 mb10 ff-heading dark-color">Address</p>
               <p className="fw600 mb10 ff-heading dark-color">City</p>
-              <p className="fw600 mb-0 ff-heading dark-color">State/county</p>
+              <p className="fw600 mb10 ff-heading dark-color">State</p>
+              <p className="fw600 mb10 ff-heading dark-color">Country</p>
+              <p className="fw600 mb10 ff-heading dark-color">Zip Code</p>
             </div>
             <div className="pd-list">
               <p className="text mb10">{address.address}</p>
               <p className="text mb10">{address.city}</p>
-              <p className="text mb-0">{address.state}</p>
+              <p className="text mb10">{address.state}</p>
+              <p className="text mb10">{address.country}</p>
+              <p className="text mb10">{address.zipCode}</p>
             </div>
           </div>
         </div>
       ))}
-      {/* End col */}
 
-      <div className="col-md-12">
-        <iframe
-          className="position-relative bdrs12 mt30 h250"
-          loading="lazy"
-          src={`https://maps.google.com/maps?q=${addresses[0].address}&t=m&z=14&output=embed&iwloc=near`}
-          title={addresses[0].address}
-          aria-label={addresses[0].address}
-        />
-      </div>
-      {/* End col */}
     </>
   );
 };

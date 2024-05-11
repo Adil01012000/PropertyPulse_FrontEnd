@@ -290,33 +290,14 @@ export default function PropertyFiltering() {
               <ListingSidebar filterFunctions={filterFunctions} />
             </div>
           </div>
-          {/* End mobile filter sidebar */}
 
           <div className="col-lg-8">
-            <div className="row align-items-center mb20">
-              <TopFilterBar
-                pageContentTrac={pageContentTrac}
-                colstyle={colstyle}
-                setColstyle={setColstyle}
-                setCurrentSortingOption={setCurrentSortingOption}
-              />
-            </div>
-            {/* End TopFilterBar */}
 
             <div className="row mt15">
               <FeaturedListings colstyle={colstyle} data={pageItems} />
             </div>
             {/* End .row */}
 
-            <div className="row">
-              <PaginationTwo
-                pageCapacity={8}
-                data={sortedFilteredData}
-                pageNumber={pageNumber}
-                setPageNumber={setPageNumber}
-              />
-            </div>
-            {/* End .row */}
           </div>
           {/* End .col-lg-8 */}
         </div>

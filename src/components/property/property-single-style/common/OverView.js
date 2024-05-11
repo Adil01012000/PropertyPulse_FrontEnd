@@ -1,45 +1,67 @@
-import listings from "@/data/listings";
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 
+const OverView = ({ _id }) => {
+  const [property_details, setPropertyDetails] = useState([]);
 
-const OverView = ({id}) => {
-  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+  const getPropertyDetails = async () => {
+
+    try {
+      let pro = { _id }
+      const response = await fetch("http://localhost:5000/api/property/getPropertyById", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pro),
+      });
+      const data = await response.json();
+      setPropertyDetails(data.property);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPropertyDetails();
+  }, [])
+
   const overviewData = [
     {
       icon: "flaticon-bed",
       label: "Bedroom",
-      value: data.bed,
+      value: property_details.property_bedrooms,
     },
     {
       icon: "flaticon-shower",
       label: "Bath",
-      value: data.bath,
+      value: property_details.property_baths,
     },
     {
       icon: "flaticon-event",
       label: "Year Built",
-      value: data.yearBuilding,
+      value: property_details.property_year_built,
     },
     {
       icon: "flaticon-garage",
       label: "Garage",
-      value: "2",
+      value: property_details.property_garage,
       xs: true,
     },
     {
       icon: "flaticon-expand",
       label: "Sqft",
-      value: data.sqft,
+      value: property_details.property_size,
       xs: true,
     },
     {
       icon: "flaticon-home-1",
       label: "Property Type",
-      value: data.propertyType,
+      value: property_details.property_category,
     },
   ];
-  
- 
+
+
   return (
     <>
       {overviewData.map((item, index) => (

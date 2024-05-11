@@ -56,7 +56,7 @@ const DefaultHeader = () => {
                   </div>
                   {/* End Logo */}
 
-                  <MainMenu />
+                  {/* <MainMenu /> */}
                   {/* End Main Menu */}
                 </div>
               </div>

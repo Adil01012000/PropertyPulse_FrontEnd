@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Explore = () => {
-  // Array of iconbox data
+  
   const iconboxData = [
     {
       id: 1,

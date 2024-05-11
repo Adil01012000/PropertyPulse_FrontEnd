@@ -57,7 +57,7 @@ const Header = () => {
                   </div>
                   {/* End Logo */}
 
-                  <MainMenu />
+                  {/* <MainMenu /> */}
                   {/* End Main Menu */}
                 </div>
               </div>
@@ -82,7 +82,7 @@ const Header = () => {
                     Add Property
                     <i className="fal fa-arrow-right-long" />
                   </Link>
-                  <a
+                  {/* <a
                     className="sidemenu-btn filter-btn-right"
                     href="#"
                     data-bs-toggle="offcanvas"
@@ -104,7 +104,7 @@ const Header = () => {
                       src="/images/icon/nav-icon-dark.svg"
                       alt="humberger menu"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
               {/* End .col-auto */}
@@ -132,14 +132,14 @@ const Header = () => {
       {/* End Signup Modal */}
 
       {/* DesktopSidebarMenu */}
-      <div
+      {/* <div
         className="offcanvas offcanvas-end"
         tabIndex="-1"
         id="SidebarPanel"
         aria-labelledby="SidebarPanelLabel"
       >
         <SidebarPanel />
-      </div>
+      </div> */}
       {/* Sidebar Panel End */}
     </>
   );

@@ -1,49 +1,75 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 
-const PropertyDetails = () => {
+const PropertyDetails = ({_id}) => {
+
+  const [property_details, setPropertyDetails] = useState([]);
+
+  const getPropertyDetails = async () => {
+
+    try {
+      let pro = { _id }
+      const response = await fetch("http://localhost:5000/api/property/getPropertyById", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pro),
+      });
+      const data = await response.json();
+      setPropertyDetails(data.property);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPropertyDetails();
+  }, [])
+
   const columns = [
     [
       {
-        label: "Property ID",
-        value: "RT48",
+        label: "Property Yearly Tax",
+        value: property_details.property_yearly_tax_rate,
       },
       {
         label: "Price",
-        value: "$252,000",
+        value: property_details.property_price,
       },
       {
         label: "Property Size",
-        value: "1500 Sq Ft",
+        value: property_details.property_size,
       },
       {
         label: "Bathrooms",
-        value: "3",
+        value: property_details.property_baths,
       },
       {
         label: "Bedrooms",
-        value: "2",
+        value: property_details.property_bedrooms,
       },
     ],
     [
       {
         label: "Garage",
-        value: "2",
+        value: property_details.property_garage,
       },
       {
         label: "Garage Size",
-        value: "200 SqFt",
+        value: property_details.property_garage_size,
       },
       {
         label: "Year Built",
-        value: "2022",
+        value: property_details.property_year_built,
       },
       {
         label: "Property Type",
-        value: "Apartment",
+        value: property_details.property_category,
       },
       {
         label: "Property Status",
-        value: "For Sale",
+        value: property_details.property_status,
       },
     ],
   ];
