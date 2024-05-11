@@ -47,9 +47,6 @@ const GridDefault = () => {
       </section>
       {/* End Breadcumb Sections */}
 
-      {/* Property Filtering */}
-      <PropertyFiltering/>
-      {/* Property Filtering */}
 
       {/* Start Our Footer */}
       <section className="footer-style1 pt60 pb-0">

@@ -293,9 +293,6 @@ export default function PropertyFiltering() {
 
           <div className="col-lg-8">
 
-            <div className="row mt15">
-              <FeaturedListings colstyle={colstyle} data={pageItems} />
-            </div>
             {/* End .row */}
 
           </div>

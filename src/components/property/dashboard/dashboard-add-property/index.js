@@ -185,6 +185,41 @@ const AddPropertyTabContent = () => {
     },
   };
 
+  const checker = () => {
+    console.log('Checker Called');
+  };
+
+
+  const amenitiesData = {
+    column1: [
+      { label: "Attic", defaultChecked: false },
+      { label: "Basketball court", defaultChecked: true },
+      { label: "Air Conditioning", defaultChecked: true },
+      { label: "Lawn", defaultChecked: true },
+      { label: "Swimming Pool", defaultChecked: false },
+      { label: "Barbeque", defaultChecked: false },
+      { label: "Microwave", defaultChecked: false },
+    ],
+    column2: [
+      { label: "TV Cable", defaultChecked: false },
+      { label: "Dryer", defaultChecked: true },
+      { label: "Outdoor Shower", defaultChecked: true },
+      { label: "Washer", defaultChecked: true },
+      { label: "Gym", defaultChecked: false },
+      { label: "Ocean view", defaultChecked: false },
+      { label: "Private space", defaultChecked: false },
+    ],
+    column3: [
+      { label: "Lake view", defaultChecked: false },
+      { label: "Wine cellar", defaultChecked: true },
+      { label: "Front yard", defaultChecked: true },
+      { label: "Refrigerator", defaultChecked: true },
+      { label: "WiFi", defaultChecked: false },
+      { label: "Laundry", defaultChecked: false },
+      { label: "Sauna", defaultChecked: false },
+    ],
+  };
+
   return (
     <>
       <nav>
@@ -236,18 +271,6 @@ const AddPropertyTabContent = () => {
             aria-selected="false"
           >
             4. Detail
-          </button>
-          <button
-            className="nav-link fw600"
-            id="nav-item5-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-item5"
-            type="button"
-            role="tab"
-            aria-controls="nav-item5"
-            aria-selected="false"
-          >
-            5. Amenities
           </button>
         </div>
       </nav>
@@ -740,6 +763,12 @@ const AddPropertyTabContent = () => {
               </div>
             </form>
           </div>
+
+          <button type="submit" className="ud-btn btn-thm" onClick={createProperty}>
+            Add Property
+            <i className="fal fa-arrow-right-long" />
+          </button>
+
         </div>
         {/* Property Details End */}
 

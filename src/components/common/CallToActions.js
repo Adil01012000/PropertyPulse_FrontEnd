@@ -48,7 +48,7 @@ const CallToActions = () => {
                 </Link>
                 <Link href="/contact" className="ud-btn btn-dark">
                   <span className="flaticon-call vam pe-2" />
-                  920 851 9087
+                  123 456 789
                 </Link>
               </div>
             </div>
