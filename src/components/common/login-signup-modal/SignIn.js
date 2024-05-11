@@ -8,26 +8,25 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function register() {
+  const login = async () => {
     let data = { email, password }
     await fetch("http://localhost:5000/api/auth/login", {
       method: 'POST',
-      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(data),
     })
-      .then((response) => {
-        if (response.ok) {
-          console.log('API Success!');
-        } else {
-          console.log('API Failure!');
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.token) {
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('userId', data.userId);
+          window.location.href = '/';
         }
-      })
-      .catch((error) => {
-        console.log('Server Error');
-      })
-  }
+      });
+  };
+
 
   return (
     <form className="form-style1">
@@ -62,17 +61,16 @@ const SignIn = () => {
           <span className="checkmark" />
         </label>
         <a className="fz14 ff-heading" href="#">
-          Lost your password?
+          Forgot password?
         </a>
       </div>
-      {/* End  Lost your password? */}
 
       <div className="d-grid mb20">
-        <button className="ud-btn btn-thm" type="submit">
+        <button className="ud-btn btn-thm" type="submit" onClick={login}>
           Sign in <i className="fal fa-arrow-right-long" />
         </button>
       </div>
-      {/* End submit */}
+
     </form>
   );
 };

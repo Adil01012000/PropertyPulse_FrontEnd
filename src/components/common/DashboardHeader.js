@@ -70,12 +70,16 @@ const DashboardHeader = () => {
 
                 </div>
               </div>
-              
+
+              {/* End .col-6 */}
             </div>
+            {/* End .row */}
           </div>
         </nav>
       </header>
+      {/* End Header */}
 
+      {/* DesktopSidebarMenu */}
       <div
         className="offcanvas offcanvas-end"
         tabIndex="-1"
@@ -84,6 +88,7 @@ const DashboardHeader = () => {
       >
         <SidebarPanel />
       </div>
+      {/* Sidebar Panel End */}
     </>
   );
 };

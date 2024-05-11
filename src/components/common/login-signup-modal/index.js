@@ -15,7 +15,6 @@ const LoginSignupModal = () => {
           aria-label="Close"
         />
       </div>
-      {/* End header */}
 
       <div className="modal-body">
         <div className="log-reg-form">
@@ -48,7 +47,6 @@ const LoginSignupModal = () => {
                 </button>
               </div>
             </nav>
-            {/* End nav tab items */}
 
             <div className="tab-content" id="nav-tabContent2">
               <div
@@ -59,7 +57,6 @@ const LoginSignupModal = () => {
               >
                 <SignIn />
               </div>
-              {/* End signin content */}
 
               <div
                 className="tab-pane fade fz15"
@@ -69,7 +66,7 @@ const LoginSignupModal = () => {
               >
                 <SignUp />
               </div>
-              {/* End signup content */}
+
             </div>
           </div>
         </div>

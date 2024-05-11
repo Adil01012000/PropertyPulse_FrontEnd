@@ -8,7 +8,7 @@ import PropertyDataTable from "@/components/property/dashboard/dashboard-my-prop
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 
 export const metadata = {
-  title: "Dashboard Properties || Property Pulse",
+  title: "Property Pulse",
 };
 
 const DashboardMyProperties = () => {
@@ -42,11 +42,10 @@ const DashboardMyProperties = () => {
                 <div className="col-xxl-3">
                   <div className="dashboard_title_area">
                     <h2>My Properties</h2>
-                    <p className="text">We are glad to see you again!</p>
                   </div>
                 </div>
                 <div className="col-xxl-9">
-                  <FilterHeader />
+                  {/* <FilterHeader /> */}
                 </div>
               </div>
               {/* End .row */}
@@ -57,9 +56,6 @@ const DashboardMyProperties = () => {
                     <div className="packages_table table-responsive">
                       <PropertyDataTable />
 
-                      <div className="mt30">
-                        <Pagination />
-                      </div>
                     </div>
                   </div>
                 </div>

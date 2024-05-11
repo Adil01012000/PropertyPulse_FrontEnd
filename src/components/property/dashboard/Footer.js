@@ -16,14 +16,7 @@ const Footer = () => {
           <div className="col-auto">
             <div className="copyright-widget">
               <p className="text">
-                © Homez {currentYear}{" "}
-                <a
-                  href="https://themeforest.net/user/ib-themes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ib-themes
-                </a>{" "}
+                © Property Pulse {currentYear}{" "}
                 - All rights reserved
               </p>
             </div>
@@ -34,7 +27,7 @@ const Footer = () => {
               <p>
                 {footerLinks.map((link, index) => (
                   <React.Fragment key={index}>
-                    <a href={link.href}>{link.text}</a>
+                    <a>{link.text}</a>
                     {index !== footerLinks.length - 1 && " · "}
                   </React.Fragment>
                 ))}

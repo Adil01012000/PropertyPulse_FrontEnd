@@ -1,6 +1,4 @@
 "use client";
-import MainMenu from "@/components/common/MainMenu";
-import SidebarPanel from "@/components/common/sidebar-panel";
 import LoginSignupModal from "@/components/common/login-signup-modal";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,10 +22,18 @@ const DefaultHeader = () => {
     };
   }, []);
 
+  const showLoginRegisterLink = () => {
+    return !sessionStorage.getItem("token");
+  };
+
+  const showAddPropertyButton = () => {
+    return sessionStorage.getItem("token");
+  };
+
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
+        className={`header-nav nav-homepage-style main-menu  ${
           navbar ? "sticky slideInDown animated" : ""
         }`}
       >
@@ -41,7 +47,7 @@ const DefaultHeader = () => {
                       <Image
                         width={138}
                         height={44}
-                        src="/images/header-logo2.svg"
+                        src="/images/header-logo.svg"
                         alt="Header Logo"
                       />
                     </Link>
@@ -54,66 +60,48 @@ const DefaultHeader = () => {
                       />
                     </Link>
                   </div>
-                  {/* End Logo */}
 
-                  {/* <MainMenu /> */}
-                  {/* End Main Menu */}
                 </div>
               </div>
-              {/* End .col-auto */}
 
               <div className="col-auto">
                 <div className="d-flex align-items-center">
-                  <a
-                    href="#"
-                    className="login-info d-flex align-items-cente"
-                    data-bs-toggle="modal"
-                    data-bs-target="#loginSignupModal"
-                    role="button"
-                  >
-                    <i className="far fa-user-circle fz16 me-2" />{" "}
-                    <span className="d-none d-xl-block">Login / Register</span>
-                  </a>
-                  <Link
-                    className="ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4"
-                    href="/dashboard-add-property"
+                  {showLoginRegisterLink() ? (
+                    <a
+                      href="#"
+                      className="login-info d-flex align-items-center"
+                      data-bs-toggle="modal"
+                      data-bs-target="#loginSignupModal"
+                      role="button"
+                    >
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">Login / Register</span>
+                    </a>
+                  ) : (
+                    <Link
+                      className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
+                      href="/dashboard-add-property"
+                    >
+                      Add Property
+                      <i className="fal fa-arrow-right-long" />
+                    </Link>
+                  )}
+                  {!showAddPropertyButton() && (
+                    <Link
+                    className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
+                    href="/not-found"
                   >
                     Add Property
                     <i className="fal fa-arrow-right-long" />
                   </Link>
-                  <a
-                    className="sidemenu-btn filter-btn-right"
-                    href="#"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#SidebarPanel"
-                    aria-controls="SidebarPanelLabel"
-                  >
-                    <Image
-                      width={25}
-                      height={9}
-                      className="img-1"
-                      src="/images/dark-nav-icon.svg"
-                      alt="humberger menu"
-                    />
-                    <Image
-                      width={25}
-                      height={9}
-                      className="img-2"
-                      src="/images/dark-nav-icon.svg"
-                      alt="humberger menu"
-                    />
-                  </a>
+                  )}
                 </div>
               </div>
-              {/* End .col-auto */}
             </div>
-            {/* End .row */}
           </div>
         </nav>
       </header>
-      {/* End Header */}
 
-      {/* Signup Modal */}
       <div className="signup-modal">
         <div
           className="modal fade"
@@ -127,7 +115,7 @@ const DefaultHeader = () => {
           </div>
         </div>
       </div>
-      {/* End Signup Modal */}
+
     </>
   );
 };

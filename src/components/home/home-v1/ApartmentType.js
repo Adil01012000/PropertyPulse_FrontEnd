@@ -37,21 +37,33 @@ const ApartmentType = () => {
         },
       }}
     >
-      {apartmentType.map((type) => (
-        <SwiperSlide key={type.id}>
+      {/* {apartmentType.map((type) => ( */}
+        <SwiperSlide>
           <div className="item">
             <Link href="/grid-default">
               <div className="iconbox-style1">
-                <span className={`icon ${type.icon}`} />
+                {/* <span className={`icon ${type.icon}`} /> */}
                 <div className="iconbox-content">
-                  <h6 className="title">{type.title}</h6>
-                  <p className="text mb-0">{`${type.count} Properties`}</p>
+                  <h6 className="title">any title</h6>
+                  <p className="text mb-0">any count</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="item">
+            <Link href="/grid-default">
+              <div className="iconbox-style1">
+                {/* <span className={`icon ${type.icon}`} /> */}
+                <div className="iconbox-content">
+                  <h6 className="title">any title</h6>
+                  <p className="text mb-0">any count</p>
                 </div>
               </div>
             </Link>
           </div>
         </SwiperSlide>
-      ))}
+      {/* ))} */}
     </Swiper>
   );
 };

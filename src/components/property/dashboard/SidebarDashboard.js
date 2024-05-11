@@ -41,7 +41,7 @@ const SidebarDashboard = () => {
           text: "My Profile",
         },
         {
-          href: "/login",
+          href: "/",
           icon: "flaticon-logout",
           text: "Logout",
         },
