@@ -107,11 +107,8 @@ const AddPropertyTabContent = () => {
   ]  
 
   const handleUpload = (files) => {
-    const filesArray = Array.from(files);
-    const updatedImages = [...propertyImages, ...filesArray];
-    setPropertyImages(updatedImages, () => {
-      console.log('Property After', propertyImages);
-    });
+    console.log(files);
+    setPropertyImages([...propertyImages, ...files]);
   };
   
   

@@ -43,19 +43,19 @@ const Header = () => {
               <div className="col-auto">
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="logos mr40">
-                    <Link className="header-logo logo1" href="/">
+                    {/* <Link className="logo" href="/">
                       <Image
                         width={138}
                         height={44}
                         src="/images/header-logo.svg"
                         alt="Header Logo"
                       />
-                    </Link>
+                    </Link> */}
                     <Link className="header-logo logo2" href="/">
                       <Image
                         width={138}
                         height={44}
-                        src="/images/header-logo2.svg"
+                        src="/images/header-logo.svg"
                         alt="Header Logo"
                       />
                     </Link>

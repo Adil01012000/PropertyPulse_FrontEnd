@@ -31,7 +31,7 @@ const Login = () => {
                       width={138}
                       height={44}
                       className="mb25"
-                      src="/images/header-logo2.svg"
+                      src="/images/header-logo.svg"
                       alt="logo"
                     />
                   </Link>
