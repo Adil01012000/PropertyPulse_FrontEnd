@@ -1,5 +1,5 @@
 "use client";
-import { React, useState, useRef } from "react";
+import { React, useState, useRef, useEffect } from "react";
 import Select from "react-select";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Image from "next/image";
@@ -7,6 +7,9 @@ import Image from "next/image";
 const AddPropertyTabContent = () => {
 
   const userId = sessionStorage.getItem("userId");
+
+  const [propertyImages, setPropertyImages] = useState([]);
+  const fileInputRef = useRef(null);
 
   const [property_title, setPropertyTitle] = useState("");
   const [property_description, setPropertyDescription] = useState("");
@@ -30,36 +33,6 @@ const AddPropertyTabContent = () => {
   const [property_garage_size, setPropertyGarageSize] = useState("");
   const [property_year_built, setPropertyYearBuilt] = useState("");
   const [property_basement, setPropertyBasement] = useState("");
-
-  const createProperty = async () => {
-    let data = {
-      user_id: userId, property_title, property_description, property_purpose: property_purpose.value, 
-      property_category: property_category.value, property_listed_in: property_listed_in.value, property_price, property_yearly_tax_rate, 
-      property_status: property_status.value, property_after_price_label, property_address, property_state: property_state.value, 
-      property_country: property_country.value, property_city: property_city.value, property_zip_code, property_size, property_rooms, 
-      property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size, 
-      property_year_built, property_basement: property_basement.value
-    };
-
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    try {
-      const response = await fetch("http://localhost:5000/api/property/createProperty", requestOptions);
-      if (!response.ok) {
-        throw new Error('Failed to create property');
-      }
-      const responseData = await response.json();
-      window.location.href = '/dashboard-home';
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
-};
 
 
   const propertyType = [
@@ -131,24 +104,22 @@ const AddPropertyTabContent = () => {
   const BasementOptions = [
     { value: "Yes", label: "Yes" },
     { value: "No", label: "No" },
-  ]
-
-  const [uploadedImages, setUploadedImages] = useState([]);
-  const fileInputRef = useRef(null);
+  ]  
 
   const handleUpload = (files) => {
-    const newImages = [...uploadedImages];
-
-    for (const file of files) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        newImages.push(e.target.result);
-        setUploadedImages(newImages);
-      };
-      reader.readAsDataURL(file);
-    }
+    const filesArray = Array.from(files);
+    const updatedImages = [...propertyImages, ...filesArray];
+    setPropertyImages(updatedImages, () => {
+      console.log('Property After', propertyImages);
+    });
   };
-
+  
+  
+  // useEffect(() => {
+  //   console.log('Property After', propertyImages);
+  // }, [propertyImages]);
+  
+  
   const handleDrop = (event) => {
     event.preventDefault();
     const files = event.dataTransfer.files;
@@ -164,11 +135,17 @@ const AddPropertyTabContent = () => {
     fileInputRef.current.click();
   };
 
-  const handleDelete = (index) => {
-    const newImages = [...uploadedImages];
-    newImages.splice(index, 1);
-    setUploadedImages(newImages);
+  const handleFileInputChange = (e) => {
+    const files = e.target.files;
+    handleUpload(files);
   };
+
+  const handleDelete = (index) => {
+    const newImages = [...propertyImages];
+    newImages.splice(index, 1);
+    setPropertyImages(newImages);
+  };
+
 
   const customStyles = {
     option: (styles, { isFocused, isSelected, isHovered }) => {
@@ -185,39 +162,34 @@ const AddPropertyTabContent = () => {
     },
   };
 
-  const checker = () => {
-    console.log('Checker Called');
-  };
+  const createProperty = async () => {
+    let data = {
+      user_id: userId, property_title, property_description, property_purpose: property_purpose.value,
+      property_category: property_category.value, property_listed_in: property_listed_in.value, property_price, property_yearly_tax_rate,
+      property_status: property_status.value, property_after_price_label, property_address, property_state: property_state.value,
+      property_country: property_country.value, property_city: property_city.value, property_zip_code, property_size, property_rooms,
+      property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size,
+      property_year_built, property_basement: property_basement.value, propertyImages
+    };
 
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
 
-  const amenitiesData = {
-    column1: [
-      { label: "Attic", defaultChecked: false },
-      { label: "Basketball court", defaultChecked: true },
-      { label: "Air Conditioning", defaultChecked: true },
-      { label: "Lawn", defaultChecked: true },
-      { label: "Swimming Pool", defaultChecked: false },
-      { label: "Barbeque", defaultChecked: false },
-      { label: "Microwave", defaultChecked: false },
-    ],
-    column2: [
-      { label: "TV Cable", defaultChecked: false },
-      { label: "Dryer", defaultChecked: true },
-      { label: "Outdoor Shower", defaultChecked: true },
-      { label: "Washer", defaultChecked: true },
-      { label: "Gym", defaultChecked: false },
-      { label: "Ocean view", defaultChecked: false },
-      { label: "Private space", defaultChecked: false },
-    ],
-    column3: [
-      { label: "Lake view", defaultChecked: false },
-      { label: "Wine cellar", defaultChecked: true },
-      { label: "Front yard", defaultChecked: true },
-      { label: "Refrigerator", defaultChecked: true },
-      { label: "WiFi", defaultChecked: false },
-      { label: "Laundry", defaultChecked: false },
-      { label: "Sauna", defaultChecked: false },
-    ],
+    try {
+      const response = await fetch("http://localhost:5000/api/property/createProperty", requestOptions);
+      if (!response.ok) {
+        throw new Error('Failed to create property');
+      }
+      const responseData = await response.json();
+      window.location.href = '/dashboard-home';
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   return (
@@ -390,7 +362,7 @@ const AddPropertyTabContent = () => {
                         classNamePrefix="select property type"
                         required
                         value={property_purpose}
-                        onChange={(selectedOption) => setPropertyPurpose(selectedOption )}
+                        onChange={(selectedOption) => setPropertyPurpose(selectedOption)}
                       />
                     </div>
                   </div>
@@ -448,71 +420,73 @@ const AddPropertyTabContent = () => {
 
         {/* Property Upload Media Starts */}
         <div
-          className="tab-pane fade"
-          id="nav-item2"
-          role="tabpanel"
-          aria-labelledby="nav-item2-tab"
-        >
+    className="tab-pane fade"
+    id="nav-item2"
+    role="tabpanel"
+    aria-labelledby="nav-item2-tab"
+  >
+    <div
+      className="upload-img position-relative overflow-hidden bdrs12 text-center mb30 px-2"
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+    >
+      <div className="icon mb30">
+        <span className="flaticon-upload" />
+      </div>
+      <h4 className="title fz17 mb10">Upload/Drag photos of your property</h4>
+      <p className="text mb25">
+        Photos must be JPEG or PNG format and at most 5
+      </p>
+      <label className="ud-btn btn-white">
+        Browse Files
+        <input
+          ref={fileInputRef}
+          id="fileInput"
+          type="file"
+          multiple
+          className="ud-btn btn-white"
+          onChange={(e) => {
+            console.log("Files selected:", e.target.files); // Debugging
+            handleUpload(e.target.files);
+          }}
+          style={{ display: "none" }}
+        />
+      </label>
+    </div>
 
-          <div
-            className="upload-img position-relative overflow-hidden bdrs12 text-center mb30 px-2"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-          >
-            <div className="icon mb30">
-              <span className="flaticon-upload" />
-            </div>
-            <h4 className="title fz17 mb10">Upload/Drag photos of your property</h4>
-            <p className="text mb25">
-              Photos must be JPEG or PNG format and at least 2048x768
-            </p>
-            <label className="ud-btn btn-white">
-              Browse Files
-              <input
-                ref={fileInputRef}
-                id="fileInput"
-                type="file"
-                multiple
-                className="ud-btn btn-white"
-                onChange={(e) => handleUpload(e.target.files)}
-                style={{ display: "none" }}
-              />
-            </label>
-          </div>
+    {/* Display uploaded images */}
+    <div className="row profile-box position-relative d-md-flex align-items-end mb50">
+      {propertyImages.map((file, index) => (
+        <div className="col-2" key={index}>
+          <div className="profile-img mb20 position-relative">
+            <img
+              width={212}
+              height={194}
+              className="w-100 bdrs12 cover"
+              src={URL.createObjectURL(file)}
+              alt={`Uploaded Image ${index + 1}`}
+            />
+            <button
+              style={{ border: "none" }}
+              className="tag-del"
+              title="Delete Image"
+              onClick={() => handleDelete(index)}
+              type="button"
+              data-tooltip-id={`delete-${index}`}
+            >
+              <span className="fas fa-trash-can" />
+            </button>
 
-          {/* Display uploaded images */}
-          <div className="row profile-box position-relative d-md-flex align-items-end mb50">
-            {uploadedImages.map((imageData, index) => (
-              <div className="col-2" key={index}>
-                <div className="profile-img mb20 position-relative">
-                  <Image
-                    width={212}
-                    height={194}
-                    className="w-100 bdrs12 cover"
-                    src={imageData}
-                    alt={`Uploaded Image ${index + 1}`}
-                  />
-                  <button
-                    style={{ border: "none" }}
-                    className="tag-del"
-                    title="Delete Image"
-                    onClick={() => handleDelete(index)}
-                    type="button"
-                    data-tooltip-id={`delete-${index}`}
-                  >
-                    <span className="fas fa-trash-can" />
-                  </button>
-
-                  <ReactTooltip
-                    id={`delete-${index}`}
-                    place="right"
-                    content="Delete Image"
-                  />
-                </div>
-              </div>
-            ))}
+            <ReactTooltip
+              id={`delete-${index}`}
+              place="right"
+              content="Delete Image"
+            />
           </div>
         </div>
+      ))}
+    </div>
+  </div>
         {/* Property Upload Media Ends */}
 
         {/* Property Location Starts */}
