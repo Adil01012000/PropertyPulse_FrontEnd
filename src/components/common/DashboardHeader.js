@@ -44,7 +44,7 @@ const DashboardHeader = () => {
           text: "My Profile",
           href: "/dashboard-my-profile",
         },
-        { icon: "flaticon-exit", text: "Logout", href: "/login" },
+        { icon: "flaticon-exit", text: "Logout", href: "/" },
       ],
     },
   ];

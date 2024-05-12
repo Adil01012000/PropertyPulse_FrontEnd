@@ -6,6 +6,18 @@ import { usePathname } from "next/navigation";
 const SidebarDashboard = () => {
   const pathname = usePathname();
 
+  const handleLogout = () => {
+    try {
+      // Attempt to remove token from sessionStorage
+      sessionStorage.removeItem('token');
+    } catch (error) {
+      console.error('Error removing token from sessionStorage:', error);
+    }
+
+    // Redirect user to the login page
+    window.location.href = "/"; // Directly set window location for redirection
+  };
+
   const sidebarItems = [
     {
       title: "MAIN",
@@ -44,6 +56,7 @@ const SidebarDashboard = () => {
           href: "/",
           icon: "flaticon-logout",
           text: "Logout",
+          onClick: handleLogout,
         },
       ],
     },
@@ -82,3 +95,4 @@ const SidebarDashboard = () => {
 };
 
 export default SidebarDashboard;
+

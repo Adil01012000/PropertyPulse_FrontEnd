@@ -327,7 +327,7 @@ const BuyProperty = () => {
                                             <div className="list-thumb" >
                                                 <img
                                                     className="w-100 bdrs12 cover"
-                                                    src={listing.property_images[0]}
+                                                    src={listing.property_image_one}
                                                     alt={`Uploaded Image`}
                                                     width={212}
                                                     height={194}
