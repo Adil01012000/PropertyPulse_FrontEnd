@@ -6,6 +6,8 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 const PropertyDataTable = () => {
   const [properties, setProperties] = useState([]);
 
+  const userId = sessionStorage.getItem("userId");
+
   const getProperties = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/property/getPropertyByUserId", {
@@ -13,7 +15,7 @@ const PropertyDataTable = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user_id: "6639026b3280d3be59880a29" })
+        body: JSON.stringify({ user_id: userId })
       });
       const data = await response.json();
       setProperties(data.properties);

@@ -104,19 +104,19 @@ const AddPropertyTabContent = () => {
   const BasementOptions = [
     { value: "Yes", label: "Yes" },
     { value: "No", label: "No" },
-  ]  
+  ]
 
   const handleUpload = (files) => {
     console.log(files);
-    setPropertyImages([...propertyImages, ...files]);
+    setPropertyImages([...files]);
   };
-  
-  
+
+
   // useEffect(() => {
   //   console.log('Property After', propertyImages);
   // }, [propertyImages]);
-  
-  
+
+
   const handleDrop = (event) => {
     event.preventDefault();
     const files = event.dataTransfer.files;
@@ -166,7 +166,9 @@ const AddPropertyTabContent = () => {
       property_status: property_status.value, property_after_price_label, property_address, property_state: property_state.value,
       property_country: property_country.value, property_city: property_city.value, property_zip_code, property_size, property_rooms,
       property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size,
-      property_year_built, property_basement: property_basement.value, propertyImages
+      property_year_built, property_basement: property_basement.value, property_image_one: "http://localhost:5000/profile/propertyImages_1715461401952.jpg",
+      property_image_two: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_three: "http://localhost:5000/profile/propertyImages_1715461401952.jpg",
+       property_image_four: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_five: "http://localhost:5000/profile/propertyImages_1715461401952.jpg"
     };
 
     const requestOptions = {
@@ -417,73 +419,73 @@ const AddPropertyTabContent = () => {
 
         {/* Property Upload Media Starts */}
         <div
-    className="tab-pane fade"
-    id="nav-item2"
-    role="tabpanel"
-    aria-labelledby="nav-item2-tab"
-  >
-    <div
-      className="upload-img position-relative overflow-hidden bdrs12 text-center mb30 px-2"
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-    >
-      <div className="icon mb30">
-        <span className="flaticon-upload" />
-      </div>
-      <h4 className="title fz17 mb10">Upload/Drag photos of your property</h4>
-      <p className="text mb25">
-        Photos must be JPEG or PNG format and at most 5
-      </p>
-      <label className="ud-btn btn-white">
-        Browse Files
-        <input
-          ref={fileInputRef}
-          id="fileInput"
-          type="file"
-          multiple
-          className="ud-btn btn-white"
-          onChange={(e) => {
-            console.log("Files selected:", e.target.files); // Debugging
-            handleUpload(e.target.files);
-          }}
-          style={{ display: "none" }}
-        />
-      </label>
-    </div>
+          className="tab-pane fade"
+          id="nav-item2"
+          role="tabpanel"
+          aria-labelledby="nav-item2-tab"
+        >
+          <div
+            className="upload-img position-relative overflow-hidden bdrs12 text-center mb30 px-2"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            <div className="icon mb30">
+              <span className="flaticon-upload" />
+            </div>
+            <h4 className="title fz17 mb10">Upload/Drag photos of your property</h4>
+            <p className="text mb25">
+              Photos must be JPEG or PNG format and at most 5
+            </p>
+            <label className="ud-btn btn-white">
+              Browse Files
+              <input
+                ref={fileInputRef}
+                id="fileInput"
+                type="file"
+                multiple
+                className="ud-btn btn-white"
+                onChange={(e) => {
+                  console.log("Files selected:", e.target.files); // Debugging
+                  handleUpload(e.target.files);
+                }}
+                style={{ display: "none" }}
+              />
+            </label>
+          </div>
 
-    {/* Display uploaded images */}
-    <div className="row profile-box position-relative d-md-flex align-items-end mb50">
-      {propertyImages.map((file, index) => (
-        <div className="col-2" key={index}>
-          <div className="profile-img mb20 position-relative">
-            <img
-              width={212}
-              height={194}
-              className="w-100 bdrs12 cover"
-              src={URL.createObjectURL(file)}
-              alt={`Uploaded Image ${index + 1}`}
-            />
-            <button
-              style={{ border: "none" }}
-              className="tag-del"
-              title="Delete Image"
-              onClick={() => handleDelete(index)}
-              type="button"
-              data-tooltip-id={`delete-${index}`}
-            >
-              <span className="fas fa-trash-can" />
-            </button>
+          {/* Display uploaded images */}
+          <div className="row profile-box position-relative d-md-flex align-items-end mb50">
+            {propertyImages.map((file, index) => (
+              <div className="col-2" key={index}>
+                <div className="profile-img mb20 position-relative">
+                  <img
+                    width={212}
+                    height={194}
+                    className="w-100 bdrs12 cover"
+                    src={URL.createObjectURL(file)}
+                    alt={`Uploaded Image ${index + 1}`}
+                  />
+                  <button
+                    style={{ border: "none" }}
+                    className="tag-del"
+                    title="Delete Image"
+                    onClick={() => handleDelete(index)}
+                    type="button"
+                    data-tooltip-id={`delete-${index}`}
+                  >
+                    <span className="fas fa-trash-can" />
+                  </button>
 
-            <ReactTooltip
-              id={`delete-${index}`}
-              place="right"
-              content="Delete Image"
-            />
+                  <ReactTooltip
+                    id={`delete-${index}`}
+                    place="right"
+                    content="Delete Image"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
         {/* Property Upload Media Ends */}
 
         {/* Property Location Starts */}
