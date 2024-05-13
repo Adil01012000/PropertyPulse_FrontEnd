@@ -1,21 +1,17 @@
 "use client";
-import Link from "next/link";
 import React from "react";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const SidebarDashboard = () => {
+  const router = useRouter();
   const pathname = usePathname();
 
   const handleLogout = () => {
-    try {
-      // Attempt to remove token from sessionStorage
-      sessionStorage.removeItem('token');
-    } catch (error) {
-      console.error('Error removing token from sessionStorage:', error);
-    }
-
-    // Redirect user to the login page
-    window.location.href = "/"; // Directly set window location for redirection
+    // Clear sessionStorage
+    sessionStorage.clear();
+    // Redirect to "/"
+    window.location.href = '/';
   };
 
   const sidebarItems = [
@@ -53,10 +49,10 @@ const SidebarDashboard = () => {
           text: "My Profile",
         },
         {
-          href: "/",
+          // Using onClick handler for logout
+          onClick: handleLogout,
           icon: "flaticon-logout",
           text: "Logout",
-          onClick: handleLogout,
         },
       ],
     },
@@ -76,15 +72,24 @@ const SidebarDashboard = () => {
             </p>
             {section.items.map((item, itemIndex) => (
               <div key={itemIndex} className="sidebar_list_item">
-                <Link
-                  href={item.href}
-                  className={`items-center   ${
-                    pathname == item.href ? "-is-active" : ""
-                  } `}
-                >
-                  <i className={`${item.icon} mr15`} />
-                  {item.text}
-                </Link>
+                {item.onClick ? (
+                  // If onClick is provided, use onClick handler
+                  <a onClick={item.onClick} className="items-center">
+                    <i className={`${item.icon} mr15`} />
+                    {item.text}
+                  </a>
+                ) : (
+                  // Otherwise, use Link component
+                  <Link
+                    href={item.href}
+                    className={`items-center   ${
+                      pathname === item.href ? "-is-active" : ""
+                    } `}
+                  >
+                    <i className={`${item.icon} mr15`} />
+                    {item.text}
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -95,4 +100,3 @@ const SidebarDashboard = () => {
 };
 
 export default SidebarDashboard;
-

@@ -107,7 +107,7 @@ const AddPropertyTabContent = () => {
   ]
 
   const handleUpload = (files) => {
-    console.log('New Files',files);
+    console.log('New Files', files);
     setPropertyImages([...files]);
   };
 
@@ -159,10 +159,10 @@ const AddPropertyTabContent = () => {
       property_category: property_category.value, property_listed_in: property_listed_in.value, property_price, property_yearly_tax_rate,
       property_status: property_status.value, property_after_price_label, property_address, property_state: property_state.value,
       property_country: property_country.value, property_city: property_city.value, property_zip_code, property_size, property_rooms,
-      property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size, propertyImages,
+      property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size,
       property_year_built, property_basement: property_basement.value, property_image_one: "http://localhost:5000/profile/propertyImages_1715461401952.jpg",
       property_image_two: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_three: "http://localhost:5000/profile/propertyImages_1715461401952.jpg",
-       property_image_four: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_five: "http://localhost:5000/profile/propertyImages_1715461401952.jpg"
+      property_image_four: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_five: "http://localhost:5000/profile/propertyImages_1715461401952.jpg"
     };
 
     let formdata = new FormData();
@@ -191,14 +191,14 @@ const AddPropertyTabContent = () => {
     formdata.append("property_basement", property_basement.value);
     // formdata.append("propertyImages", propertyImages);
 
-    console.log('API DATA',data);
-    console.log('API DATA',formdata);
+    console.log('API DATA', data);
+    console.log('API DATA', formdata);
     const requestOptions = {
       method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(data),
     };
 
     try {
@@ -268,7 +268,6 @@ const AddPropertyTabContent = () => {
         </div>
       </nav>
 
-      <form>
       <div className="tab-content" id="nav-tabContent">
         {/* Property Description Starts */}
         <div
@@ -280,7 +279,7 @@ const AddPropertyTabContent = () => {
           <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
             <h4 className="title fz17 mb30">Property Description</h4>
 
-            {/* <form className="form-style1"> */}
+            <form className="form-style1">
               <div className="row">
                 <div className="col-sm-12">
                   <div className="mb20">
@@ -435,7 +434,7 @@ const AddPropertyTabContent = () => {
                   </div>
                 </div>
               </div>
-            {/* </form> */}
+            </form>
           </div>
         </div>
         {/* Property Description Ends */}
@@ -520,7 +519,7 @@ const AddPropertyTabContent = () => {
         >
           <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
             <h4 className="title fz17 mb30">Listing Location</h4>
-            {/* <form className="form-style1"> */}
+            <form className="form-style1">
               <div className="row">
                 <div className="col-sm-12">
                   <div className="mb20">
@@ -612,8 +611,9 @@ const AddPropertyTabContent = () => {
 
               </div>
 
-            {/* </form> */}
+            </form>
           </div>
+
         </div>
         {/* Property Location Ends */}
 
@@ -626,7 +626,7 @@ const AddPropertyTabContent = () => {
         >
           <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
             <h4 className="title fz17 mb30">Listing Details</h4>
-            {/* <form className="form-style1"> */}
+            <form className="form-style1">
               <div className="row">
                 <div className="col-sm-6 col-xl-4">
                   <div className="mb20">
@@ -757,7 +757,7 @@ const AddPropertyTabContent = () => {
                 </div>
 
               </div>
-            {/* </form> */}
+            </form>
           </div>
 
           <button type="submit" className="ud-btn btn-thm" onClick={createProperty}>
@@ -769,7 +769,6 @@ const AddPropertyTabContent = () => {
         {/* Property Details End */}
 
       </div>
-      </form>
     </>
   );
 };

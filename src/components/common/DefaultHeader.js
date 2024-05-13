@@ -43,22 +43,22 @@ const DefaultHeader = () => {
               <div className="col-auto">
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="logos mr40">
-                    {/* <Link className="header-logo logo1" href="/">
+                  <Link className="header-logo logo1" href="/">
                       <Image
                         width={138}
                         height={44}
-                        src="/images/header-logo.svg"
+                        src="/images/header-logo2.svg"
                         alt="Header Logo"
                       />
-                    </Link> */}
-                    {/* <Link className="header-logo logo2" href="/">
+                    </Link>
+                    <Link className="header-logo logo2" href="/">
                       <Image
                         width={138}
                         height={44}
-                        src="/images/header-logo.svg"
+                        src="/images/header-logo2.svg"
                         alt="Header Logo"
                       />
-                    </Link> */}
+                    </Link>
                   </div>
 
                 </div>
