@@ -107,14 +107,9 @@ const AddPropertyTabContent = () => {
   ]
 
   const handleUpload = (files) => {
-    console.log(files);
+    console.log('New Files',files);
     setPropertyImages([...files]);
   };
-
-
-  // useEffect(() => {
-  //   console.log('Property After', propertyImages);
-  // }, [propertyImages]);
 
 
   const handleDrop = (event) => {
@@ -128,7 +123,6 @@ const AddPropertyTabContent = () => {
   };
 
   const handleButtonClick = () => {
-    // Programmatically trigger the hidden file input
     fileInputRef.current.click();
   };
 
@@ -165,18 +159,46 @@ const AddPropertyTabContent = () => {
       property_category: property_category.value, property_listed_in: property_listed_in.value, property_price, property_yearly_tax_rate,
       property_status: property_status.value, property_after_price_label, property_address, property_state: property_state.value,
       property_country: property_country.value, property_city: property_city.value, property_zip_code, property_size, property_rooms,
-      property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size,
+      property_bedrooms, property_baths, property_garage: property_garage.value, property_garage_size, propertyImages,
       property_year_built, property_basement: property_basement.value, property_image_one: "http://localhost:5000/profile/propertyImages_1715461401952.jpg",
       property_image_two: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_three: "http://localhost:5000/profile/propertyImages_1715461401952.jpg",
        property_image_four: "http://localhost:5000/profile/propertyImages_1715461340909.jpg", property_image_five: "http://localhost:5000/profile/propertyImages_1715461401952.jpg"
     };
 
+    let formdata = new FormData();
+    formdata.append("user_id", userId);
+    formdata.append("property_title", property_title);
+    formdata.append("property_description", property_description);
+    formdata.append("property_purpose", property_purpose.value);
+    formdata.append("property_category", property_category.value);
+    formdata.append("property_listed_in", property_listed_in.value);
+    formdata.append("property_price", property_price);
+    formdata.append("property_yearly_tax_rate", property_yearly_tax_rate);
+    formdata.append("property_status", property_status.value);
+    formdata.append("property_after_price_label", property_after_price_label);
+    formdata.append("property_address", property_address);
+    formdata.append("property_state", property_state.value);
+    formdata.append("property_country", property_country.value);
+    formdata.append("property_city", property_city.value);
+    formdata.append("property_zip_code", property_zip_code);
+    formdata.append("property_size", property_size);
+    formdata.append("property_rooms", property_rooms);
+    formdata.append("property_bedrooms", property_bedrooms);
+    formdata.append("property_baths", property_baths);
+    formdata.append("property_garage", property_garage.value);
+    formdata.append("property_garage_size", property_garage_size);
+    formdata.append("property_year_built", property_year_built);
+    formdata.append("property_basement", property_basement.value);
+    // formdata.append("propertyImages", propertyImages);
+
+    console.log('API DATA',data);
+    console.log('API DATA',formdata);
     const requestOptions = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
-      body: JSON.stringify(data),
+      body: data,
     };
 
     try {
@@ -246,6 +268,7 @@ const AddPropertyTabContent = () => {
         </div>
       </nav>
 
+      <form>
       <div className="tab-content" id="nav-tabContent">
         {/* Property Description Starts */}
         <div
@@ -257,7 +280,7 @@ const AddPropertyTabContent = () => {
           <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
             <h4 className="title fz17 mb30">Property Description</h4>
 
-            <form className="form-style1">
+            {/* <form className="form-style1"> */}
               <div className="row">
                 <div className="col-sm-12">
                   <div className="mb20">
@@ -412,7 +435,7 @@ const AddPropertyTabContent = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            {/* </form> */}
           </div>
         </div>
         {/* Property Description Ends */}
@@ -497,7 +520,7 @@ const AddPropertyTabContent = () => {
         >
           <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
             <h4 className="title fz17 mb30">Listing Location</h4>
-            <form className="form-style1">
+            {/* <form className="form-style1"> */}
               <div className="row">
                 <div className="col-sm-12">
                   <div className="mb20">
@@ -589,7 +612,7 @@ const AddPropertyTabContent = () => {
 
               </div>
 
-            </form>
+            {/* </form> */}
           </div>
         </div>
         {/* Property Location Ends */}
@@ -603,7 +626,7 @@ const AddPropertyTabContent = () => {
         >
           <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
             <h4 className="title fz17 mb30">Listing Details</h4>
-            <form className="form-style1">
+            {/* <form className="form-style1"> */}
               <div className="row">
                 <div className="col-sm-6 col-xl-4">
                   <div className="mb20">
@@ -734,7 +757,7 @@ const AddPropertyTabContent = () => {
                 </div>
 
               </div>
-            </form>
+            {/* </form> */}
           </div>
 
           <button type="submit" className="ud-btn btn-thm" onClick={createProperty}>
@@ -746,6 +769,7 @@ const AddPropertyTabContent = () => {
         {/* Property Details End */}
 
       </div>
+      </form>
     </>
   );
 };
