@@ -47,7 +47,7 @@ const CompareTable = () => {
     const compareProperties = async () => {
       try {
         if (propertyOneId && propertyTwoId) {
-          const data = { property_one_id: propertyOneId, property_two_id: propertyTwoId };
+          const data = { property_one_id: propertyOneId.value, property_two_id: propertyTwoId.value };
           const response = await fetch("http://localhost:5000/api/property/getPropertyToCompare", {
             method: "POST",
             headers: {
@@ -82,7 +82,11 @@ const CompareTable = () => {
             className="select-custom pl-0"
             classNamePrefix="select"
             value={propertyOneId}
-            onChange={(selectedOption) => setPropertyOneId(selectedOption.value)}
+            onChange={(selectedOption) => setPropertyOneId(selectedOption)}
+            menuPortalTarget={document.body}
+            menuPosition="fixed"
+            menuPlacement="auto"
+            menuShouldScrollIntoView={true}
           />
         </div>
         <div className="col-md-6">
@@ -97,7 +101,11 @@ const CompareTable = () => {
             className="select-custom pl-0"
             classNamePrefix="select"
             value={propertyTwoId}
-            onChange={(selectedOption) => setPropertyTwoId(selectedOption.value)}
+            onChange={(selectedOption) => setPropertyTwoId(selectedOption)}
+            menuPortalTarget={document.body}
+            menuPosition="fixed"
+            menuPlacement="auto"
+            menuShouldScrollIntoView={true}
           />
         </div>
       </div>
@@ -122,16 +130,15 @@ const CompareTable = () => {
               <th scope="col">
                 <div className="membership_header">
                   <div className="thumb">
-                    <Image
-                      width={331}
+                    <img
+                      className="w-100 bdrs12 cover"
+                      src={comparePropertiesOne.property_image_one}
+                      alt={`Uploaded Image`}
+                      width={313}
                       height={245}
-                      className="img-fluid mb-3 w100"
-                      src="/images/listings/compare-1.jpg"
-                      alt="compare-1"
                     />
-
                     <div className="h6 price mt-1">{comparePropertiesOne.property_title}</div>
-                    <div className="h6 price mt-1">{comparePropertiesOne.property_price}</div>
+                    <div className="h6 price mt-1">&#163; {comparePropertiesOne.property_price}</div>
                     <p className="address mb-0">{comparePropertiesOne.property_city} , {comparePropertiesOne.property_state} , {comparePropertiesOne.property_country}</p>
                   </div>
                 </div>
@@ -140,15 +147,15 @@ const CompareTable = () => {
               <th scope="col">
                 <div className="membership_header">
                   <div className="thumb">
-                    <Image
-                      width={331}
+                    <img
+                      className="w-100 bdrs12 cover"
+                      src={comparePropertiesTwo.property_image_one}
+                      alt={`Uploaded Image`}
+                      width={313}
                       height={245}
-                      className="img-fluid mb-3 w100"
-                      src="/images/listings/compare-1.jpg"
-                      alt="compare-1"
                     />
                     <div className="h6 price mt-1">{comparePropertiesTwo.property_title}</div>
-                    <div className="h6 price mt-1">{comparePropertiesTwo.property_price}</div>
+                    <div className="h6 price mt-1">&#163; {comparePropertiesTwo.property_price}</div>
                     <p className="address mb-0">{comparePropertiesTwo.property_city} , {comparePropertiesTwo.property_state} , {comparePropertiesTwo.property_country}</p>
                   </div>
                 </div>
@@ -210,16 +217,8 @@ const CompareTable = () => {
               <th className="text-end" scope="row">
                 Property Size
               </th>
-              <td>{comparePropertiesOne.property_size}</td>
-              <td>{comparePropertiesTwo.property_size}</td>
-            </tr>
-
-            <tr>
-              <th className="text-end" scope="row">
-                Structure Type
-              </th>
-              <td>{comparePropertiesOne.property_structure_type}</td>
-              <td>{comparePropertiesTwo.property_structure_type}</td>
+              <td>{comparePropertiesOne.property_size} Sqft</td>
+              <td>{comparePropertiesTwo.property_size} Sqft</td>
             </tr>
 
             <tr>
